@@ -69,13 +69,32 @@ export default function Quiz(){
  
     
     return (
-        <div>
+        // make this into its own component with props
+        <form>
             {/* if load is true map out the question array and render each question with a random order of answer choices */}
-            {load && questions.map((question, index) => {
-                return <h2 key={index+1}>{question.question}</h2>
-            
+            {load && questions.map((item, questionIndex) => {
+                const question = item.question
+                const answers = item.answers
+                return (
+                    <section key={`question${questionIndex+1}`}>
+                        <h2>{question}</h2>
+                        <div className="flex">
+                        {answers.map((item, answerIndex) => {
+                            const answer = item.answer
+                            return (
+                                <label key={`answer${answerIndex+1}`}>
+                                <p>{answer}</p>
+                                <input className="hidden" type='radio' onClick={() => console.log(question.question,item)} value={answer ? 1 : 0}/>
+                                </label>
+                            )
+                        })}
+                        </div>
+                        <hr/>
+                    </section>
+                ) 
             })}
-        </div>
+            <button>Submit</button>
+        </form>
     )
        
     
