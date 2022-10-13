@@ -25,8 +25,18 @@
   /* flex-direction: column; */
 }
 
+.grey {
+  background-color: lightgray;
+  padding: 1em;
+  border-radius: 20px;
+}
+
+.green{
+  background-color: green;
+}
+
 .hidden{
-  display: none;
+  /* display: none; */
 }
 
 @keyframes logo-spin {
