@@ -35,6 +35,12 @@
   background-color: green;
 }
 
+.question-answer {
+  transition: .5s;
+}
+
+
+
 .hidden{
   /* display: none; */
 }
