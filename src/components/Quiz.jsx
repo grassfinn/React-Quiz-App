@@ -2,28 +2,28 @@ import React from "react"
 import Questions from "./Questions";
 import he from "he"
 
-export default function Quiz(){
+export default function Quiz(props){
     
     const [questions, setQuestions] = React.useState({})
     const [load, setLoad] = React.useState(false)
+    const category = props.category
     
     React.useEffect(() => {
         apiCall()
     },[])
     
     
-
+    // apicall
     async function apiCall(){
         setLoad(false)
         // normal api https://opentdb.com/api.php?amount=5&type=multiple
-        const response = await fetch('https://opentdb.com/api.php?amount=5&category=29&type=multiple&')
+        const response = await fetch(`https://opentdb.com/api.php?amount=5&category=${category}&type=multiple&`)
         const data = await response.json()
         const questions = data.results
 
         const updatedQuestions = await questions.map(item => {
             return {...item, 'answers' : shuffle(answerArray(item))}
         })
-        // console.log(updatedQuestions)
         setQuestions(updatedQuestions)
         setLoad(true)
         return questions
@@ -75,8 +75,8 @@ export default function Quiz(){
     return (
 // make this into its own component with props
         <div>
-            <h1>Quizzical</h1>
             <form >
+            
                 {/* if load is true map out the question array and render each question with a random order of answer choices */}
                 {load && <Questions questions={questions} apiCall={() => apiCall} />}
               

@@ -17,7 +17,6 @@ function App() {
       {/* if gameStart === false, render start */}
       {!gameStart && <Start startGame={startGame}/>}
       {/* once gameStart === true, render quiz */}
-      {gameStart && <Quiz/>}
     </div>
   )
 }

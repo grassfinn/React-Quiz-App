@@ -18,9 +18,8 @@ export default function Questions(props){
         },[checkAnswer])
         
         React.useEffect(() => {
-            console.log('calling',props.apiCall)
-            console.log(questions)
         },[submitted])
+        
         function validate(e){
             const validateQuestion = Object.entries(checkAnswer)
             setPoints(0)
@@ -82,6 +81,7 @@ export default function Questions(props){
                                     // name has to be the same name for the hook for the button to change
                                     name={`question${questionIndex+1}`}
                                     // set the value of the radio to a state
+                                    // spread the current state, and store the question with the asnwer selected
                                     onClick={() =>  setCheckAnswer(currentState => ({
                                         ...currentState, [question] : answer
                                     }))}
